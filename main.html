@@ -15,16 +15,35 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<script type="text/javascript" src="./main.js" defer></script>
 
-	</head>
+<style>
+	#name, #num, #divBox{
+		width: 60%;
+		height: 60px;
+		font-size: 30px;}
+	#birth1{
+		width: 20%;
+		height: 60px;
+		font-size: 30px;}
+	#birth2{
+		width: 5%;
+		height: 60px;
+		font-size: 30px;}
+	#appere2, #addr_3{
+		width: 40%;
+		height: 60px;
+		font-size: 30px;}
+	
+</style>
+
+</head>
 	<body>
 <form method=post action='' name=ipt>
+<form action="\\DESKTOP-9M7IGA5\codinng\Bitnami\wampstack-8.0.11-3\apache2\htdocs\request.html" method="get">
 
 
-<div class="wrapper">
-	<div class="container">
-		<main class="content" id="form">
-			<div class="step" data-js="step-section">
+
 				<div class="step-header step-header--left">
 					<p class="step-info__tit" data-js="step-section__label">전자문진표 작성</p>
 					<div class="step-lang" data-js="toggle__wrapper">
@@ -43,115 +62,130 @@
 					</div>
 				</div>
 				
-				<div class="step-info">
-					<ol class="step-info__list">
-						<li class="step-info__item is-active" data-js="step-section__anchor">
-							<span class="step-info__num">1</span>
-							<span class="step-info__name">개인정보</span>
-						</li>
-						<li class="step-info__item" data-js="step-section__anchor">
-							<span class="step-info__num">2</span>
-							<span class="step-info__name">증상/기타정보</span>
-						</li>
-					</ol>
-				</div>
+
 				<div class="step-content" style="width: 751px;">
 					<div class="step-panels" data-js="step-section__content" style="">
 						<section class="step-panels__panel is-active" data-js="step-section__panel" data-panel-label="전자문진표 작성" style="width: 751px;">
 							<div class="t-form">
 								<div class="t-form__row"> <!-- 이름 -->
 									<div class="sec-header">
-										<h2>이름</h2><span class="required">*</span>
+										<h2>
+											이름: 
+											<input type="text" id="name" maxlength="50" data-checkrequired="" placeholder="예시) 홍길동" 
+											autofocus 
+											pattern="[가-힣a-zA-Z]" 
+											required>
+										</h2>
+										<span class="required"></span>
 										<span style="color:red;">본인 이름 (숫자, 특수문자 입력불가)</span>
-									</div>
-									<div class="t-input">
-										<input type="text" id="name" maxlength="50" data-checkrequired="" placeholder="예시) 홍길동">
+										
 									</div>
 								</div>
 								<div class="t-form__row"><!-- 주민번호 -->
 									<div class="sec-header">
-										<h2>주민등록번호</h2><span class="required">*</span>										
-										<span style="color:red;">(주민등록번호 앞 7자리, 숫자만 입력하세요)</span>
+										<h2>주민등록번호: 
+											<input type=text id="birth1"name=jumin1 size=6 maxlength=6
+										placeholder=""
+										onkeyup="checkNext_1();" onblur="check_jumin();"
+										onfocus="OnCheckBirth(this)"  onKeyup="OnCheckBirth(this)"  
+                                        required>
+											- 
+										<input type=text id="birth2"name=jumin2 size=1 maxlength=1
+										placeholder=""
+										onfocus="OnCheckBirth(this)" onKeyup="OnCheckBirth(this)"& ="checkNext_2();" 
+										onBlur="check_jumin();"
+                                        required>
+										******
+									</h2><span class="required"></span>										
+									<span style="color:red;">(주민등록번호 앞 7자리, 숫자만 입력하세요)</span>
+								
+
 									</div>
-									<div class="t-input">
-										<input type=text name=jumin3 class="text_only_number" id="birthday" 
+									<!--
+									<h1>
+                                        <input type=text name=jumin3 class="text_only_number" id="birthday" 
 										placeholder="YYMMDD" maxlength="6" minlength="6" size=10 data-checkrequired=""
 										onfocus="OnCheckbirth(this)" 
-										onKeyup="OnCheckbirth(this)" & ="checkNext_3()"
+										onkeypress="OnCheckbirth(this)" & ="checkNext_3()"
 										onBlur="check_jumin();"> 
 										-
 										<input type=text name=jumin4 class="text_only_number" id="birthday" 
 										placeholder="*" maxlength="1" minlength="1" size=1 data-checkrequired=""
 										onfocus="OnCheckbirth(this)" 
-										onKeyup="OnCheckbirth(this)" & ="checkNext_4();"
+										onKeyup="OnCheckbirth(this)" & ="checkNext_4(this);"
 										onBlur="check_jumin();"> 
 										******
-
-
-
-										<input type=text name=jumin1 size=6 maxlength=6
-										
-										onkeyup="checkNext_1();" onblur="check_jumin();"
-										onfocus="OnCheckBirth(this)"  onKeyup="OnCheckBirth(this)"  >
-											- 
-										<input type=text name=jumin2 size=1 maxlength=1 
-										onfocus="OnCheckBirth(this)" onKeyup="OnCheckBirth(this)"& ="checkNext_2();" 
-										onBlur="check_jumin();">
-										******
-										<input type=radio name=sex size=4 maxlength=4 value=m>
-										<label for="sexdstnCd_1"><span>남</span></label> 
-										<input type=radio name=sex size=4 maxlength=4 value=f>
-										<label for="sexdstnCd_2"><span>여</span></label>												
-
-
+                                    </h1>
+									-->
 									</div>
 								</div>
 									</div>
 								</div>
                                 <div class="t-form__row"><!-- 핸드폰번호 -->
 									<div class="sec-header">
-										<h2>휴대폰번호</h2><span class="required">*</span>
-									</div>
-									<div class="t-input">
-										<input type = "text" name = "num2" 
+										<h2>휴대폰번호: 
+										<input type = "text" id="num" name = "num2" 
 										onBlur="check_jumin();"
 										onfocus="OnCheckTEL(this)" 
 										onKeyup="OnCheckTEL(this)" size=14
 										onkeyup="checkNext_3();"
 										placeholder="예시) 010-1234-5678"
-										> 
-										<!--input type="text" class="text_mobile_number" id="mobile" maxlength="13" data-checkrequired=""-->
+		                                required> 
+										<span class="required"></span>
+									</h2>
+										<!--input type="text" class="text_mobile_number" id="mobile" maxlength="13" data-checkrequired=""-->							
+									</div>
+									<div>
+										<span style="color:red;">검사 결과 받을 번호! 한 번호로 2명까지만 문자받을 수 있습니다.</span>
 									</div>
 								</div>
+
+								<div><h2>
+									성별: 
+									<input type=radio id="sex"name=sex size=4 maxlength=4 value=m
+									required>
+									<label for="sexdstnCd_1"><span>남</span></label> 
+									<input type=radio id="sex" name=sex size=4 maxlength=4 value=f
+									required>
+									<label for="sexdstnCd_2"><span>여</span></label>
+								</h2>
+								</div>
+
+						
+								
 								<!-------------------------------주소------->
 								<div class="t-form__row" id="addrDom">
 									<div class="sec-header">
 										<h2>실거주지 주소</h2><span class="required">*</span>
 									</div>
-									<div class="t-form__flex">
-										<div class="t-radio">
-											<input type="radio" name="addr_1" id="addr_1" value="1" checked="">
+									<div  class="t-form__flex">
+										<div id="divBox"class="t-radio">
+											<input type="radio" name="addr_1" id="addr_1" value="1" checked=""
+                                            required>
 											<label for="addr_1"><span>서초구</span></label>
 										</div>
-										<div class="t-radio">
-											<input type="radio" name="addr_1" id="addr_2" value="2">
+										<div id="divBox" class="t-radio">
+											<input type="radio" name="addr_1" id="addr_2" value="2"
+                                            required>
 											<label for="addr_2"><span>다른지역: </span></label>
-											<input type="text" name="addr_1" placeholder="ㅁㅁ시 OO구" >
+											<input type="text" name="addr_1" id="addr_3"placeholder="ㅁㅁ시 OO구" >
 										</div>
 										<!-- 증상----------------------------------- ----------------------------------------->
 										<div class="t-form__row" id="appere">
 											<div class="sec-header">
 												<h2>코로나19 발현 증상</h2><span class="required">*</span>
 											</div>
-											<div class="t-form__flex">
-												<div class="t-radio">
-													<input type="radio" name="appere" id="appere" value="0" checked="">
+											<div id="divBox" class="t-form__flex">
+												<div id="divBox" class="t-radio">
+													<input type="radio" name="appere" id="appere1" value="0" checked=""
+                                                    required>
 													<label for="appere"><span>없음 (X)</span></label>
 												</div>
-												<div class="t-radio">
-													<input type="radio" name="appere" id="appere" value="1">
+												<div id="divBox" class="t-radio">
+													<input type="radio" name="appere" id="appere1" value="1"
+                                                    required>
 													<label for="addr_2"><span>있음 (O)</span></label>
-													<input type="text" name="appere" placeholder="증상을 적어주세요."" >
+													<input type="text" name="appere1" id="appere2"placeholder="증상을 적어주세요." >
 												</div>
 										
 										
@@ -183,14 +217,13 @@
                         <div class="step-panels__fotter">
                             <div class="cta-wrap">
                                 <div class="cta-wrap__col">
-									<button> 
-										<a href = "javascript:void(0)" 
+									<input type="submit" id="submit" value="보내기"
+                                         href = "javascript:void(0)" 
 										onclick = "document.getElementById('light').style.display='block';
-										document.getElementById('fade').style.display='block'">
-										제출
-										</a>
-									</button> 
-									<div id="light" class="white_content">
+										document.getElementById('fade').style.display='block'"
+										formtarget="_blank"
+                                    >
+                                    <div id="light" class="white_content">
 										접수완료되었습니다.
 										<a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';
 										document.getElementById('fade').style.display='none'"
@@ -198,7 +231,17 @@
 										<br>확인
 										</a>										
 									</div> 
-									<div id="fade" class="black_overlay"></div> 
+									<div id="fade" class="black_overlay"></div>
+                                    <!----
+                                    <button> 
+										<a href = "javascript:void(0)" 
+										onclick = "document.getElementById('light').style.display='block';
+										document.getElementById('fade').style.display='block'">
+										제출
+										</a>
+									</button> 
+									
+                                    --> 
                                     <!--<button type="button" class="cta cta--confirm"> 다음  </button>-->
                                 </div>
                             </div>
@@ -206,334 +249,7 @@
 
 
 </form>
-					</body>
-					</html>
-<!--휴대폰 번호 자동 hypen==code=====================================================================================================================-->					
-<script> 
-    function OnCheckTEL(oTa) { 
-        var oForm = oTa.form ; 
-        var sMsg = oTa.value ; 
-        var onlynum = "" ; 
-        var imsi=0; 
-        onlynum = RemoveDash2(sMsg);  //하이픈 입력시 자동으로 삭제함 
-        onlynum =  checkDigit(onlynum);  // 숫자만 입력받게 함 
-        var retValue = ""; 
-    
-        if(event.keyCode != 12 ) { 
-            if(onlynum.substring(0,2) == 02) {  // 서울전화번호일 경우  10자리까지만 나타나교 그 이상의 자리수는 자동삭제 
-                    if (GetMsgLen(onlynum) <= 1) oTa.value = onlynum ; 
-                    if (GetMsgLen(onlynum) == 2) oTa.value = onlynum + "-"; 
-                    if (GetMsgLen(onlynum) == 4) oTa.value = onlynum.substring(0,2) + "-" + onlynum.substring(2,3) ; 
-                    if (GetMsgLen(onlynum) == 4) oTa.value = onlynum.substring(0,2) + "-" + onlynum.substring(2,4) ; 
-                    if (GetMsgLen(onlynum) == 5) oTa.value = onlynum.substring(0,2) + "-" + onlynum.substring(2,5) ; 
-                    if (GetMsgLen(onlynum) == 6) oTa.value = onlynum.substring(0,2) + "-" + onlynum.substring(2,6) ; 
-                    if (GetMsgLen(onlynum) == 7) oTa.value = onlynum.substring(0,2) + "-" + onlynum.substring(2,5) + "-" + onlynum.substring(5,7) ; ; 
-                    if (GetMsgLen(onlynum) == 8) oTa.value = onlynum.substring(0,2) + "-" + onlynum.substring(2,6) + "-" + onlynum.substring(6,8) ; 
-                    if (GetMsgLen(onlynum) == 9) oTa.value = onlynum.substring(0,2) + "-" + onlynum.substring(2,5) + "-" + onlynum.substring(5,9) ; 
-                    if (GetMsgLen(onlynum) == 10) oTa.value = onlynum.substring(0,2) + "-" + onlynum.substring(2,6) + "-" + onlynum.substring(6,10) ; 
-                    if (GetMsgLen(onlynum) == 11) oTa.value = onlynum.substring(0,2) + "-" + onlynum.substring(2,6) + "-" + onlynum.substring(6,10) ; 
-                    if (GetMsgLen(onlynum) == 12) oTa.value = onlynum.substring(0,2) + "-" + onlynum.substring(2,6) + "-" + onlynum.substring(6,10) ; 
-            } 
-            if(onlynum.substring(0,2) == 05 ) {  // 05로 시작되는 번호 체크 
-                if(onlynum.substring(2,3) == 0 ) {  // 050으로 시작되는지 따지기 위한 조건문 
-                        if (GetMsgLen(onlynum) <= 3) oTa.value = onlynum ; 
-                        if (GetMsgLen(onlynum) == 4) oTa.value = onlynum + "-"; 
-                        if (GetMsgLen(onlynum) == 5) oTa.value = onlynum.substring(0,4) + "-" + onlynum.substring(4,5) ; 
-                        if (GetMsgLen(onlynum) == 6) oTa.value = onlynum.substring(0,4) + "-" + onlynum.substring(4,6) ; 
-                        if (GetMsgLen(onlynum) == 7) oTa.value = onlynum.substring(0,4) + "-" + onlynum.substring(4,7) ; 
-                        if (GetMsgLen(onlynum) == 8) oTa.value = onlynum.substring(0,4) + "-" + onlynum.substring(4,8) ; 
-                        if (GetMsgLen(onlynum) == 9) oTa.value = onlynum.substring(0,4) + "-" + onlynum.substring(4,7) + "-" + onlynum.substring(7,9) ; ; 
-                        if (GetMsgLen(onlynum) == 10) oTa.value = onlynum.substring(0,4) + "-" + onlynum.substring(4,8) + "-" + onlynum.substring(8,10) ; 
-                        if (GetMsgLen(onlynum) == 11) oTa.value = onlynum.substring(0,4) + "-" + onlynum.substring(4,7) + "-" + onlynum.substring(7,11) ; 
-                        if (GetMsgLen(onlynum) == 12) oTa.value = onlynum.substring(0,4) + "-" + onlynum.substring(4,8) + "-" + onlynum.substring(8,12) ; 
-                        if (GetMsgLen(onlynum) == 13) oTa.value = onlynum.substring(0,4) + "-" + onlynum.substring(4,8) + "-" + onlynum.substring(8,12) ; 
-              } else { 
-                    if (GetMsgLen(onlynum) <= 2) oTa.value = onlynum ; 
-                    if (GetMsgLen(onlynum) == 3) oTa.value = onlynum + "-"; 
-                    if (GetMsgLen(onlynum) == 4) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,4) ; 
-                    if (GetMsgLen(onlynum) == 5) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,5) ; 
-                    if (GetMsgLen(onlynum) == 6) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,6) ; 
-                    if (GetMsgLen(onlynum) == 7) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,7) ; 
-                    if (GetMsgLen(onlynum) == 8) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,6) + "-" + onlynum.substring(6,8) ; ; 
-                    if (GetMsgLen(onlynum) == 9) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,7) + "-" + onlynum.substring(7,9) ; 
-                    if (GetMsgLen(onlynum) == 10) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,6) + "-" + onlynum.substring(6,10) ; 
-                    if (GetMsgLen(onlynum) == 11) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,7) + "-" + onlynum.substring(7,11) ; 
-                    if (GetMsgLen(onlynum) == 12) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,7) + "-" + onlynum.substring(7,11) ; 
-              } 
-            } 
-    
-            if(onlynum.substring(0,2) == 03 || onlynum.substring(0,2) == 04  || onlynum.substring(0,2) == 06  || onlynum.substring(0,2) == 07  || onlynum.substring(0,2) == 08 ) {  // 서울전화번호가 아닌 번호일 경우(070,080포함 // 050번호가 문제군요) 
-                    if (GetMsgLen(onlynum) <= 2) oTa.value = onlynum ; 
-                    if (GetMsgLen(onlynum) == 3) oTa.value = onlynum + "-"; 
-                    if (GetMsgLen(onlynum) == 4) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,4) ; 
-                    if (GetMsgLen(onlynum) == 5) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,5) ; 
-                    if (GetMsgLen(onlynum) == 6) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,6) ; 
-                    if (GetMsgLen(onlynum) == 7) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,7) ; 
-                    if (GetMsgLen(onlynum) == 8) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,6) + "-" + onlynum.substring(6,8) ; ; 
-                    if (GetMsgLen(onlynum) == 9) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,7) + "-" + onlynum.substring(7,9) ; 
-                    if (GetMsgLen(onlynum) == 10) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,6) + "-" + onlynum.substring(6,10) ; 
-                    if (GetMsgLen(onlynum) == 11) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,7) + "-" + onlynum.substring(7,11) ; 
-                    if (GetMsgLen(onlynum) == 12) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,7) + "-" + onlynum.substring(7,11) ; 
-    
-            } 
-            if(onlynum.substring(0,2) == 01) {  //휴대폰일 경우 
-                if (GetMsgLen(onlynum) <= 2) oTa.value = onlynum ; 
-                if (GetMsgLen(onlynum) == 3) oTa.value = onlynum + "-"; 
-                if (GetMsgLen(onlynum) == 4) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,4) ; 
-                if (GetMsgLen(onlynum) == 5) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,5) ; 
-                if (GetMsgLen(onlynum) == 6) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,6) ; 
-                if (GetMsgLen(onlynum) == 7) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,7) ; 
-                if (GetMsgLen(onlynum) == 8) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,7) + "-" + onlynum.substring(7,8) ; 
-                if (GetMsgLen(onlynum) == 9) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,7) + "-" + onlynum.substring(7,9) ; 
-                if (GetMsgLen(onlynum) == 10) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,6) + "-" + onlynum.substring(6,10) ; 
-                if (GetMsgLen(onlynum) == 11) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,7) + "-" + onlynum.substring(7,11) ; 
-                if (GetMsgLen(onlynum) == 12) oTa.value = onlynum.substring(0,3) + "-" + onlynum.substring(3,7) + "-" + onlynum.substring(7,11) ; 
-            } 
-    
-            if(onlynum.substring(0,1) == 1) {  // 1588, 1688등의 번호일 경우 
-                if (GetMsgLen(onlynum) <= 3) oTa.value = onlynum ; 
-                if (GetMsgLen(onlynum) == 4) oTa.value = onlynum + "-"; 
-                if (GetMsgLen(onlynum) == 5) oTa.value = onlynum.substring(0,4) + "-" + onlynum.substring(4,5) ; 
-                if (GetMsgLen(onlynum) == 6) oTa.value = onlynum.substring(0,4) + "-" + onlynum.substring(4,6) ; 
-                if (GetMsgLen(onlynum) == 7) oTa.value = onlynum.substring(0,4) + "-" + onlynum.substring(4,7) ; 
-                if (GetMsgLen(onlynum) == 8) oTa.value = onlynum.substring(0,4) + "-" + onlynum.substring(4,8) ; 
-                if (GetMsgLen(onlynum) == 9) oTa.value = onlynum.substring(0,4) + "-" + onlynum.substring(4,8) ; 
-                if (GetMsgLen(onlynum) == 10) oTa.value = onlynum.substring(0,4) + "-" + onlynum.substring(4,8) ; 
-                if (GetMsgLen(onlynum) == 11) oTa.value = onlynum.substring(0,4) + "-" + onlynum.substring(4,8) ; 
-                if (GetMsgLen(onlynum) == 12) oTa.value = onlynum.substring(0,4) + "-" + onlynum.substring(4,8) ; 
-            } 
-        } 
-    } 
-    
-    function RemoveDash2(sNo) { 
-    var reNo = "" 
-    for(var i=0; i<sNo.length; i++) { 
-        if ( sNo.charAt(i) != "-" ) { 
-        reNo += sNo.charAt(i) 
-        } 
-    } 
-    return reNo 
-    } 
-    
-    function GetMsgLen(sMsg) { // 0-127 1byte, 128~ 2byte 
-    var count = 0 
-        for(var i=0; i<sMsg.length; i++) { 
-            if ( sMsg.charCodeAt(i) > 127 ) { 
-                count += 2 
-            } 
-            else { 
-                count++ 
-            } 
-        } 
-    return count 
-    } 
-    
-    function checkDigit(num) { 
-        var Digit = "1234567890"; 
-        var string = num; 
-        var len = string.length 
-        var retVal = ""; 
-    
-        for (i = 0; i < len; i++) 
-        { 
-            if (Digit.indexOf(string.substring(i, i+1)) >= 0) 
-            { 
-                retVal = retVal + string.substring(i, i+1); 
-            } 
-        } 
-        return retVal; 
-    } 
-    
-    </script>					
-<!--주민 번호 자동 hypen==code=====================================================================================================================-->					
-<script> 
-    function OnCheckbirth(oTa) { 
-        var oForm = oTa.form ; 
-        var sMsg = oTa.value ; 
-        var onlynum = "" ; 
-        var imsi=0; 
-        onlynum = RemoveDash2(sMsg);  //하이픈 입력시 자동으로 삭제함 
-        onlynum =  checkDigit(onlynum);  // 숫자만 입력받게 함 
-        var retValue = ""; 
-    
-        if(event.keyCode != 12 ) { 
-            if(onlynum.substring(0,2) == 02){
-                    if (GetMsgLen(onlynum) <= 5) oTa.value = onlynum ; 
-                    if (GetMsgLen(onlynum) == 6) oTa.value = onlynum + "-"; 
-                    if (GetMsgLen(onlynum) == 7) oTa.value = onlynum.substring(0,6) + "-" + onlynum.substring(6) + "******" ; 
-					if (GetMsgLen(onlynum) >= 7) oTa.value = onlynum.substring(0,6) + "-" + onlynum.substring(6) + "******" ;               
-            }else{
-					if (GetMsgLen(onlynum) <= 5) oTa.value = onlynum ; 
-                    if (GetMsgLen(onlynum) == 6) oTa.value = onlynum + "-"; 
-                    if (GetMsgLen(onlynum) == 7) oTa.value = onlynum.substring(0,6) + "-" + onlynum.substring(6) + "******"; 
-					if (GetMsgLen(onlynum) >= 7) oTa.value = onlynum.substring(0,6) + "-" + onlynum.substring(6) + "******"; 
-              
 
-			  } 
-            } 
-    } 
-    
-    function RemoveDash2(sNo) { 
-    var reNo = "" 
-    for(var i=0; i<sNo.length; i++) { 
-        if ( sNo.charAt(i) != "-" ) { 
-        reNo += sNo.charAt(i) 
-        } 
-    } 
-    return reNo 
-    } 
-    
-    function GetMsgLen(sMsg) { // 0-127 1byte, 128~ 2byte 
-    var count = 0 
-        for(var i=0; i<sMsg.length; i++) { 
-            if ( sMsg.charCodeAt(i) > 127 ) { 
-                count += 2 
-            } 
-            else { 
-                count++ 
-            } 
-        } 
-    return count 
-    } 
-    
-    function checkDigit(num) { 
-        var Digit = "1234567890"; 
-        var string = num; 
-        var len = string.length 
-        var retVal = ""; 
-    
-        for (i = 0; i < len; i++) 
-        { 
-            if (Digit.indexOf(string.substring(i, i+1)) >= 0) 
-            { 
-                retVal = retVal + string.substring(i, i+1); 
-            } 
-        } 
-        return retVal; 
-    } 
-    
-    </script>
-<!--주민 번호 숫자만 받기==code=====================================================================================================================-->					
-<script> 
-    function OnCheckbirth(oTa) { 
-        var oForm = oTa.form ; 
-        var sMsg = oTa.value ; 
-        var onlynum = "" ; 
-        var imsi=0; 
-        onlynum = RemoveDash2(sMsg);  //하이픈 입력시 자동으로 삭제함 
-        onlynum =  checkDigit(onlynum);  // 숫자만 입력받게 함 
-        var retValue = ""; 
-    
-        if(event.keyCode != 12 ) { 
-            if(onlynum.substring(0,2) == 02){
-                    if (GetMsgLen(onlynum) <= 6)oTa.value = onlynum ; 
-                  //  if (GetMsgLen(onlynum) == 6) oTa.value = onlynum + "-"; 
-                    if (GetMsgLen(onlynum) == 7) oTa.value = onlynum.substring(0,6) + "-" + onlynum.substring(6) + "******" ; 
-					if (GetMsgLen(onlynum) >= 7) oTa.value = onlynum.substring(0,6) + "-" + onlynum.substring(6) + "******" ;               
-            }else{
-					if (GetMsgLen(onlynum) <=6 ) oTa.value = onlynum ; 
-                   // if (GetMsgLen(onlynum) == 6) oTa.value = onlynum + "-"; 
-                    if (GetMsgLen(onlynum) == 7) oTa.value = onlynum.substring(0,6) + "-" + onlynum.substring(6) + "******"; 
-					if (GetMsgLen(onlynum) >= 7) oTa.value = onlynum.substring(0,6) + "-" + onlynum.substring(6) + "******"; 
-              
-
-			  } 
-            } 
-    } 
-    
-    function RemoveDash2(sNo) { 
-    var reNo = "" 
-    for(var i=0; i<sNo.length; i++) { 
-        if ( sNo.charAt(i) != "-" ) { 
-        reNo += sNo.charAt(i) 
-        } 
-    } 
-    return reNo 
-    } 
-    
-    function GetMsgLen(sMsg) { // 0-127 1byte, 128~ 2byte 
-    var count = 0 
-        for(var i=0; i<sMsg.length; i++) { 
-            if ( sMsg.charCodeAt(i) > 127 ) { 
-                count += 2 
-            } 
-            else { 
-                count++ 
-            } 
-        } 
-    return count 
-    } 
-    
-    function checkDigit(num) { 
-        var Digit = "1234567890"; 
-        var string = num; 
-        var len = string.length 
-        var retVal = ""; 
-    
-        for (i = 0; i < len; i++) 
-        { 
-            if (Digit.indexOf(string.substring(i, i+1)) >= 0) 
-            { 
-                retVal = retVal + string.substring(i, i+1); 
-            } 
-        } 
-        return retVal; 
-    } 
-    
-    </script>
-<!--주민 번호 & 성별 자동 구분==code=====================================================================================================================-->					
-<script> 
-	function check_jumin() { 
-		if (ipt.jumin1.value.length >= 6 && ipt.jumin2.value.length == 1) {
-				var sexCode = document.ipt.jumin2.value.substring(0,1);
-				if (sexCode%2 == 1) ipt.sex[0].click(); else ipt.sex[1].click();
-	
-				var  birthYear = document.ipt.jumin1.value.substring(0,2);
-				document.ipt.birth_y.value = (sexCode>=3) ? "20"+birthYear : "19"+birthYear;
-				document.ipt.birth_m.value = document.ipt.jumin1.value.substring(2,4);
-				document.ipt.birth_d.value = document.ipt.jumin1.value.substring(4,6);
-		}
-	}
-</script>
-<!--foucus 이동==code=====================================================================================================================-->					
-<script> 
-
-//주민1->주민2
-	function checkNext_1() {
-		if (ipt.jumin1.value.length >= 6) {
-				ipt.jumin2.focus();
-			}
-		}
-//주민2->폰번
-	function checkNext_2(){
-		if(ipt.jumin2.value.length == 0) {
-				ipt.num2.focus();
-			}
-	}
-	
-	
-//주민1->주민2
-function checkNext_3() {
-		if (ipt.jumin3.value.length >= 6) {
-				ipt.jumin4.focus();
-			}
-		}
-//주민2->폰번
-	function checkNext_4(){
-		if(ipt.jumin4.value.length >= 0) {
-				ipt.num2.focus();
-			}
-	}
-
-
-
-//폰번->주소
-function checkNext_3(){
-		if(ipt.num2.value.length >= 11) {
-				ipt.addr_3.focus();
-			}
-	}	
-	</script>
 <!--==============================================클릭시 확인창========================================================----------->
 
 <style> 
@@ -563,6 +279,19 @@ function checkNext_3(){
 		z-index:1002; 
 		overflow: auto; 
 	} 
+
+/* ===================글자 크기 조정=====================*/
+#divBox {
+    width: 100%;
+    height: 20%;
+
+}
+
+
 </style> 
 
 <!--========================================================================================-->
+
+
+</body>
+					</html>
