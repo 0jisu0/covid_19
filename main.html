@@ -32,8 +32,8 @@
 		font-size: 30px;}
 	#appere2, #addr_3{
 		width: 40%;
-		height: 40px;
-		font-size: 20px;}
+		height: 30px;
+		font-size: 17px;}
 	
 </style>
 
@@ -47,7 +47,7 @@
 				<div class="step-header step-header--left">
 					<p class="step-info__tit" data-js="step-section__label">전자문진표 작성</p>
 					<div class="step-lang" data-js="toggle__wrapper">
-						<button type="button" class="step-lang__anchor" data-js="toggle" aria-controls="uiToggle-1"><span class="screen--out">언어선택</span></button>
+					
 						<div class="step-lang__panel" data-js="toggle__panel" id="uiToggle-1">
 							
 								
@@ -155,10 +155,10 @@
 								<!-------------------------------주소------->
 								<div class="t-form__row" id="addrDom">
 									<div class="sec-header">
-										<h2>실거주지 주소</h2><span class="required">*</span>
-									</div>
-									<div  class="t-form__flex">
-										<div id="divBox"class="t-radio">
+										<h2>실거주지 주소</h2><span class="required"></span>
+								
+	
+		
 											<input type="radio" name="addr_1" id="addr_1" value="1" checked=""
                                             required>
 											<label for="addr_1"><span>서초구</span></label>
@@ -172,15 +172,15 @@
 										<!-- 증상----------------------------------- ----------------------------------------->
 										<div class="t-form__row" id="appere">
 											<div class="sec-header">
-												<h2>코로나19 발현 증상</h2><span class="required">*</span>
-											</div>
-											<div id="divBox" class="t-form__flex">
-												<div id="divBox" class="t-radio">
+												<h2>코로나19 발현 증상</h2><span class="required"></span>
+											
+											
+												
 													<input type="radio" name="appere" id="appere1" value="0" checked=""
                                                     required>
 													<label for="appere"><span>없음 (X)</span></label>
-												</div>
-												<div id="divBox" class="t-radio">
+												
+				
 													<input type="radio" name="appere" id="appere1" value="1"
                                                     required>
 													<label for="addr_2"><span>있음 (O)</span></label>
