@@ -1,0 +1,1099 @@
+5-
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>코로나19 정보관리시스템</title>
+		
+
+
+
+
+
+
+
+
+
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link rel="shortcut icon" type="image/x-icon" href="./static/favicon.png">
+<link rel="stylesheet" href="./static/mCustomScrollbar.min.css" />
+<link rel="stylesheet" href="./static/visitor.css" />
+<script src="./static/jquery.min.js"></script>
+<script src="./static/mCustomScrollbar.min.js"></script>
+<script src="./static/fes.object.js"></script>
+<script src="./static/fes.core.js"></script>
+<script src="./static/fes.md.js"></script>
+<script src="./static/gsap.min.js"></script>
+<script src="./static/jquery.resize.js"></script>
+<script src="./static/lodash.2.4.1.js"></script>
+<script src="./static/toggle.js"></script>
+<script src="./static/selectstyle.js"></script>
+<script src="./static/modal.js"></script>
+<script src="./static/step-section.js"></script>
+<script src="./static/visitor.js"></script>
+<script src="./static/common.js"></script>
+	</head>
+	<body>
+	    
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/static/js/qr/qrcode.min.js"></script>
+<div class="wrapper">
+	<div class="container">
+		<main class="content" id="form">
+			<div class="step" data-js="step-section">
+				<div class="step-header step-header--left">
+					<p class="step-info__tit" data-js="step-section__label"></p>
+					<div class="step-lang" data-js="toggle__wrapper">
+						<button type="button" class="step-lang__anchor" data-js="toggle"><span class="screen--out">언어선택</span></button>
+						<div class="step-lang__panel" data-js="toggle__panel">
+							
+								
+									<button type="button" class="step-lang__btn" value="en"><span>English</span></button>
+									<!-- button type="button" class="step-lang__btn" value="cn"><span>中文</span></button -->
+									<button type="button" class="step-lang__btn step-lang__btn--selected" value="ko"><span>한국어</span></button>
+								
+								
+								
+							
+						</div>
+					</div>
+				</div>
+				
+				<div class="step-info">
+					<ol class="step-info__list">
+						<li class="step-info__item" data-js="step-section__anchor">
+							<span class="step-info__num">1</span>
+							<span class="step-info__name">개인정보</span>
+						</li>
+						<li class="step-info__item" data-js="step-section__anchor">
+							<span class="step-info__num">2</span>
+							<span class="step-info__name">증상/기타정보</span>
+						</li>
+					</ol>
+				</div>
+				<div class="step-content">
+					<div class="step-panels" data-js="step-section__content">
+						<section class="step-panels__panel" data-js="step-section__panel" data-panel-label="전자문진표 작성">
+							<div class="t-form">
+							
+								
+								<div class="t-form__row"> <!-- 주민등록번호/외국인번호 -->
+									<div class="sec-header">
+										<h2>주민/외국인등록번호: 
+										</h2><span class="required">*</span>								
+									</div>
+									<div class="t-input">
+										<input type="text" class="text_only_number" id="personalId" maxlength="6" data-checkRequired
+										onkeyup="checkNext_1();" onblur="check_jumin();"
+										onfocus="OnCheckBirth(this)"  onKeyup="OnCheckBirth(this)"/>
+										-
+										<input type="text" class="text_only_number" id="personalId" maxlength="1" data-checkRequired 
+										onfocus="OnCheckBirth(this)" onKeyup="OnCheckBirth(this)"& ="checkNext_2();" 
+										onBlur="check_jumin();"/>
+										******
+										<span style="color:red;">(주민등록번호 앞 7자리, 숫자만 입력하세요)</span>
+									</div>									
+								</div>
+								<div class="t-form__row"> <!-- 이름 -->
+									<div class="sec-header">
+										<h2>이름</h2><span class="required">*</span>
+										<span style=color:red;>(숫자, 특수문자 입력불가)</span>
+									</div>
+									<div class="t-input">
+										<input type="text" id="name" maxlength="50" data-checkRequired />
+										<input type="text" id="name" maxlength="50" data-checkRequired
+											placeholder="예시) 홍길동" 
+											autofocus 
+											pattern="[가-힣a-zA-Z]" 
+											required />
+									
+									</div>
+								</div>								
+								<div class="t-form__row"><!-- 성별 -->
+									<div class="sec-header">
+										<h2>성별</h2><span class="required">*</span>
+									</div>
+									<div class="t-radio-group t-radio-group--button">
+										<div class="t-radio">
+											<input type="radio" name="sexdstnCd" id="sexdstnCd_1" value="1" checked />
+											<label for="sexdstnCd_1"><span>남</span></label>
+										</div>
+										<div class="t-radio">
+											<input type="radio" name="sexdstnCd" id="sexdstnCd_2" value="2" />
+											<label for="sexdstnCd_2"><span>여</span></label>
+										</div>
+									</div>
+								</div>
+								<div class="t-form__row"><!-- 핸드폰번호 -->
+									<div class="sec-header">
+										<h2>휴대폰번호</h2><span class="required">*</span>
+									</div>
+									<div class="t-input">
+										<input type="text" class="text_mobile_number" id="mobile" maxlength="13" data-checkRequired />
+										<input type="text" class="text_mobile_number" id="mobile" maxlength="13" data-checkRequired 
+										/>
+									</div>
+								</div>
+								<div class="t-form__row" id="addrDom"><!-- 주소 -->
+									<div class="sec-header">
+										<h2>실거주지 주소</h2><span class="required">*</span>
+									</div>
+									<div class="t-form__flex">
+										<div id="divBox"class="t-radio">
+											<input type="radio" name="addr_1" id="addr_1" value="1" checked=""
+                                            required>
+											<label for="addr_1"><span>서초구</span></label>
+										</div>
+										<div id="divBox" class="t-radio">
+											<input type="radio" name="addr_1" id="addr_2" value="2"
+                                            required>
+											<label for="addr_2"><span>다른지역: </span></label>
+											<input type="text" name="addr_1" id="addr_3"placeholder="ㅁㅁ시 OO구" >
+										</div>
+
+
+										
+										<div class="t-input">
+											<input type="text" id="patntRnZip" data-checkRequired readonly />
+										</div>
+										<div class="cta-wrap">
+											<button type="button" class="cta cta--t-address" id="btnZipCode" >검색</button>
+										</div>
+									</div>
+									<div class="t-form__flex">
+										<div class="t-input">
+											<input type="text" id="patntRdnmadr" readonly />
+										</div>
+									</div>
+									<div class="t-form__flex">
+										<div class="t-input">
+											<input type="text" id="patntRdnmadrDtl" maxlength="50" placeholder="상세주소를 입력하세요." />
+		                                    <input type="hidden" id="patntEmdCd" />
+										 	<input type="hidden" id="patntBuldManageno" />
+		                                    <input type="hidden" id="roadAddrPart2" />
+										</div>
+									</div>
+								</div>
+								<div class="t-form__row" id="appere"><!--증상-->
+									<div class="sec-header">
+										<h2>코로나19 발현 증상</h2><span class="required">*</span>
+									</div>
+									<div id="divBox" class="t-form__flex">
+										<div id="divBox" class="t-radio">
+											<input type="radio" name="appere" id="appere1" value="0" checked=""
+											required>
+											<label for="appere"><span>없음 (X)</span></label>
+										</div>
+										<div id="divBox" class="t-radio">
+											<input type="radio" name="appere" id="appere1" value="1"
+											required>
+											<label for="addr_2"><span>있음 (O)</span></label>
+											<input type="text" name="appere1" id="appere2"placeholder="증상을 적어주세요." >
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="step-panels__fotter">
+								<div class="cta-wrap">
+									<div class="cta-wrap__col">
+										<button type="button" data-js="step-next" class="cta cta--confirm"> 다음  </button>
+									</div>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+			<input type="hidden" id="insttid" value="11700106A">
+			<input type="hidden" id="insttnm" value="서울특별시송파구보건소">
+			<input type="hidden" id="ctprvnCd" value="01">
+			<input type="hidden" id="registerId" value="SYSTEM">
+		</main>
+	</div>
+</div>
+		<div class="person-modal-wrap" id="ppLayerPop">
+			<div class="person-modal-box">
+				<h2 class="pmodal-title">개인정보 수집 및 이용동의</h2>
+				<div class="pmodal-table">
+					<table>
+						<colgroup>
+							<col style="width:80px">
+							<col>
+						</colgroup>
+						<tbody>
+						<tr>
+							<th>목적</th><!-- 목적 -->
+							<td>선별진료소 기초역학조사 정보등록</td>
+						</tr>
+						<tr>
+							<th>항목</th><!-- 항목 -->
+							<td>주민등록번호/외국인번호, 이름, 생년월일, 성별,국적,휴대폰번호,실거주지 주소,직업,증상,접촉의심여부,집단 발병지역 방문여부,14일 이내 해외여행여부,검사경위</td>
+						</tr>
+						<tr>
+							<th>보유기간</th><!-- 보유기간 -->
+							<td>코로나19 경계상황 종료 후 즉시 폐기</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="pmodal-btn">
+					<button type="button" class="" data-dismiss="cancel" id="btnClosePPLayer" onclick="showPPLayer(0);"><span>확인</span></button>
+				</div>
+			</div>
+		</div><!-- //person-modal-wrap -->
+		
+		<div class="person-modal-wrap" id="jusoModalPop">
+			<div class="person-modal-box">
+				
+				
+
+
+
+
+
+
+
+
+
+
+<!-- js -->
+<script src="/static/js/script.js"></script>
+
+<!-- css -->
+
+<link rel="stylesheet" href="/static/css/style.css" />
+
+		<div id="root">
+			
+
+             <div class="k-content address-modal">
+                <div class="k-head type-nofixed">
+                    <div class="header-inner">
+                        <div class="header-item left">
+                            <div class="j-center">
+                                <button type="button" id="btnBack" name="close" class="">
+                                    <span class="k-icon icon-head-back"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="header-item center">
+                            <div class="header-title">주소검색</div>
+                        </div>
+                        <div class="header-item right">
+                            <div class="j-center">
+                                <button type="button" id="btnClose" name="close" class="">
+                                    <span class="k-icon icon-modal-close"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-inner k-min-height">
+                    <!--  -->
+                    <div class="section noti-list-section addr-head">
+                        <!--  -->
+                        <div class="noti-top">
+                            <!--  -->
+
+
+
+                            <div class="k-input-search relative">
+                                <div class="inner" name="form2" id="form">
+                                    <input type="text" value="" class="" name="keyword" id="keyword" value="" onkeydown="enterSearch();" placeholder="도로명주소, 건물명 또는 지번입력" />
+                                    <button type="button" class="clear"><span class="k-icon icon-input-clear"></span></button>
+                                    <button type="button" class="" id="btnSearch"><span class="k-icon icon-search"></span></button>
+                                </div>
+                            </div>
+                            <div class="addr-txt" style="font-size:14px;">
+                                검색어 예: 도로명(반포대로 58), 건물명(독립기념관), 지번(삼성동 25)
+                            </div>
+                        </div>
+
+                    </div>
+
+
+<script>
+var listCnt = 0;
+var pageNo = 0;
+$(function() {
+
+	
+});
+
+
+$("#btnGetNextAddr").on("click", function(){
+	pageNo++;
+    if(Math.floor(listCnt/10) >= pageNo){
+        getAddr(pageNo);
+    }else{
+    	$('#btnGetNextAddr').hide();
+    }
+});
+
+$("#btnSearch").on("click", function() {
+	pageNo = 1;
+    $("#list").html("");
+    $("#addrInfo").hide();
+    $("#addrList").show();
+    getAddr(pageNo);
+});
+
+$(document).on( 'click', '.j-between', function(e){
+	setMaping(this.dataset.seq);
+});
+
+$('[name=close]').click(function(){
+	showJusoPopup(0);
+});
+
+function enterSearch() {
+    var evt_code = (window.netscape) ? ev.which : event.keyCode;
+    if (evt_code == 13) {
+        event.keyCode = 0;
+        pageNo = 1;
+        $("#list").html("");
+        $("#addrInfo").hide();
+        $("#addrList").show();
+        getAddr(pageNo); //jsonp사용시 enter검색
+    }
+}
+
+
+function getAddr(pageNo){
+    // 적용예 (api 호출 전에 검색어 체크)
+    var keyword = $('#keyword').val();
+    if (!checkSearchedWord(keyword)) {
+        return ;
+    }
+
+    var params = {};
+    params.currentPage = pageNo;
+    params.countPerPage = '10';
+    params.confmKey = 'U01TX0FVVEgyMDIxMDEyMDExNDM1MTExMDcyMTE=';
+    params.keyword = keyword;
+    $.ajax({
+         url :"https://www.juso.go.kr/addrlink/addrLinkApiJsonp.do"
+        ,type:"post"
+        ,data:params
+        ,dataType:"jsonp"
+        ,crossDomain:true
+        ,success:function(xmlStr){
+        	if(navigator.appName.indexOf("Microsoft") > -1){
+                var xmlData = new ActiveXObject("Microsoft.XMLDOM");
+                xmlData.loadXML(xmlStr.returnXml)
+            }else{
+                var xmlData = xmlStr.returnXml;
+            }
+            var errCode = $(xmlData).find("errorCode").text();
+            var errDesc = $(xmlData).find("errorMessage").text();
+            if(errCode != "0"){
+                alert(errCode+"="+errDesc);
+            }else{
+                if(xmlStr != null){
+                    makeList(xmlData);
+                    listCnt = $(xmlData).find("totalCount").text();
+                    $("#totalCnt").text(listCnt);
+                    
+                    if(listCnt <= 10){
+                    	$('#btnGetNextAddr').hide();
+                    }else{
+                    	$('#btnGetNextAddr').show();        	
+                    }
+                }
+            }
+        }
+        ,error: function(xhr,status, error){
+            alert('에러발생');
+        }
+    });
+
+}
+
+
+function makeList(xmlStr){
+    var addressItem = ComUtils.loadTemplate("addressItem");
+    var htmlList = "";
+    var i = 0;
+    $(xmlStr).find("juso").each(function(){
+        htmlStr = addressItem;
+        htmlStr = htmlStr.replace('{seq}', i.toString());
+        htmlStr = htmlStr.replace('{seq}', i.toString());
+    	htmlStr = htmlStr.replace('{roadAddr}', $(this).find('roadAddr').text());
+        htmlStr = htmlStr.replace('{roadAddr}', $(this).find('roadAddr').text());
+        htmlStr = htmlStr.replace('{roadAddrPart1}', $(this).find('roadAddrPart1').text());
+        htmlStr = htmlStr.replace('{roadAddrPart1}', $(this).find('roadAddrPart1').text());
+        htmlStr = htmlStr.replace('{roadAddrPart2}', $(this).find('roadAddrPart2').text());
+        htmlStr = htmlStr.replace('{roadAddrPart2}', $(this).find('roadAddrPart2').text());
+        htmlStr = htmlStr.replace('{jibunAddr}', $(this).find('jibunAddr').text());
+        htmlStr = htmlStr.replace('{jibunAddr}', $(this).find('jibunAddr').text());
+        htmlStr = htmlStr.replace('{engAddr}', $(this).find('engAddr').text());
+        htmlStr = htmlStr.replace('{engAddr}', $(this).find('engAddr').text());
+        htmlStr = htmlStr.replace('{zipNo}', $(this).find('zipNo').text());
+        htmlStr = htmlStr.replace('{zipNo}', $(this).find('zipNo').text());
+        htmlStr = htmlStr.replace('{admCd}', $(this).find('admCd').text());
+        htmlStr = htmlStr.replace('{rnMgtSn}', $(this).find('rnMgtSn').text());
+        htmlStr = htmlStr.replace('{bdMgtSn}', $(this).find('bdMgtSn').text());
+        htmlStr = htmlStr.replace('{detBdNmList}', $(this).find('detBdNmList').text());
+        htmlStr = htmlStr.replace('{bdNm}', $(this).find('bdNm').text());
+        htmlStr = htmlStr.replace('{bdKdcd}', $(this).find('bdKdcd').text());
+        htmlStr = htmlStr.replace('{siNm}', $(this).find('siNm').text());
+        htmlStr = htmlStr.replace('{sggNm}', $(this).find('sggNm').text());
+        htmlStr = htmlStr.replace('{emdNm}', $(this).find('emdNm').text());
+        htmlStr = htmlStr.replace('{liNm}', $(this).find('liNm').text());
+        htmlStr = htmlStr.replace('{rn}', $(this).find('rn').text());
+        htmlStr = htmlStr.replace('{udrtYn}', $(this).find('udrtYn').text());
+        htmlStr = htmlStr.replace('{buldMnnm}', $(this).find('buldMnnm').text());
+        htmlStr = htmlStr.replace('{buldSlno}', $(this).find('buldSlno').text());
+        htmlStr = htmlStr.replace('{mtYn}', $(this).find('mtYn').text());
+        htmlStr = htmlStr.replace('{lnbrMnnm}', $(this).find('lnbrMnnm').text());
+        htmlStr = htmlStr.replace('{lnbrSlno}', $(this).find('lnbrSlno').text());
+        htmlStr = htmlStr.replace('{emdNo}', $(this).find('emdNo').text());
+        htmlList = htmlList + htmlStr;
+        i++;
+    });
+    $("#list").append(htmlList);
+}
+
+//특수문자, 특정문자열(sql예약어의 앞뒤공백포함) 제거
+function checkSearchedWord(str){
+    if(str.length >0){
+        //특수문자 제거
+        var expText = /[%=><]/ ;
+        if(expText.test(str) == true){
+            ComUtils.alert('알림','특수문자를 입력 할수 없습니다.') ;
+            str = str.split(expText).join("");
+            return false;
+        }
+
+        //특정문자열(sql예약어의 앞뒤공백포함) 제거
+        var sqlArray = new Array(
+            //sql 예약어
+            "OR", "SELECT", "INSERT", "DELETE", "UPDATE", "CREATE", "DROP", "EXEC",
+                     "UNION",  "FETCH", "DECLARE", "TRUNCATE"
+        );
+
+        var regex;
+        for(var i=0; i<sqlArray.length; i++){
+            regex = new RegExp( sqlArray[i] ,"gi") ;
+
+            if (regex.test(str) ) {
+            	ComUtils.alert('알림', "\"" + sqlArray[i]+'\"와(과) 같은 특정문자로 검색할 수 없습니다.');
+                str = str.replace(regex, "");
+                return false;
+            }
+        }
+    }
+    return true ;
+}
+</script>
+
+			</div>
+		</div>
+		
+<script>
+var GV_USER_TIMEZONE = 'GMT+09:00';
+var GV_DATE_FORMAT = 'YYYY-MM-DD';
+var GV_THOUSAND_SPRAT = ",";
+$(function(){
+	showJusoPopup(0);
+	
+    
+	$('.step-lang__btn').click(function(){
+		if ('ko' == this.value) {
+			$('.step-lang__anchor').data('plugin_uiToggle').close();
+		} else {
+			var insttId = ComUtils.getValue('insttid').endsWith('A')  ? ComUtils.getValue('insttid').substr(0,8) : ComUtils.getValue('insttid');
+			ComUtils.redirect('/phc/language.do', {instt: insttId, lang: this.value, detail:'epq'});
+		}
+	});
+	
+	
+	$('[name=testPurpose]').click(function(){
+		if(ComUtils.getValue('testPurpose') == "79"){
+			$('#personalType').show();
+		}else{
+			$('#personalType').hide();
+		}
+	});
+	
+	
+	$('[name=sexdstnCd]').click(function(){
+		if(TimeUtils.dateConverter(Date.now(), 'YYYY') - $('#birthday').val().toString().substring(0, 4) > 12){
+			if($('[name=sexdstnCd]:checked').val() === "1"){
+				$('#pregDom').hide();
+			}else{
+				$('#pregDom').show();
+			}
+		}else{
+			$('#pregDom').hide();
+		}
+	});
+	
+	
+    var replaceChar = /[~!@\#$%^&*\()\-=+_'\;<>0-9\/.\`:\"\\,\[\]?|{}]/gi;
+    var replaceNotFullKorean = /[ㄱ-ㅎㅏ-ㅣ]/gi;
+    
+    $("#name").on("focusout", function() {
+        var x = $(this).val();
+        if (x.length > 0) {
+            if (x.match(replaceChar) || x.match(replaceNotFullKorean)) {
+                x = x.replace(replaceChar, "").replace(replaceNotFullKorean, "");
+            }
+            $(this).val(x);
+        }
+        }).on("keyup", function() {
+            $(this).val($(this).val().replace(replaceChar, ""));
+
+   });   
+	
+	
+	$('#personalCheck').click(function(){
+		if($('#personalCheck')[0].checked){	
+			$('#personalId').prop('disabled', true);
+			$('#personalId').prop('hidden', true);
+			$('#personalId').val('');
+			$('#birthday').val('');
+		}else{
+			$('#personalId').prop('disabled', false);
+			$('#personalId').prop('hidden', false);
+		}
+	});
+	
+	
+	$('#personalId').on('keydown focusout', function(e){
+		var personalId = this.value.replaceAll('-', '');
+		if(e.keyCode===undefined || (e.keyCode >= 48 && personalId.length > 5)) {
+			var yymmdd = personalId.substr(0,6);
+			if(yymmdd.length==6) {
+				this.value = yymmdd + '-' + personalId.substr(6);
+			}
+			if(personalId.length > 6) {
+				var ch = personalId.charAt(6);
+				$('#birthday').val(('1256'.indexOf(ch) > -1 ? '19' : '20')+yymmdd);
+				$('[name=sexdstnCd][value="'+(ch % 2 == 0 ? '2' : '1')+'"]').prop('checked', true);
+				if(ch%2 == 0){
+					$('#pregDom').show();
+				}else{
+					$('#pregDom').hide();
+				}
+				
+			}
+		} else if(personalId.length < 8) {
+			$('#birthday').val('');
+		}
+	});
+	
+	
+	$('#btnZipCode').on('click', function() {
+		
+		showJusoPopup(1);
+		
+		
+		/* var params = ComUtils.getParams('form');
+		localStorage.setItem('imsmm.selfcheckInfo', JSON.stringify(params));
+		ComUtils.redirect('/phc/juso', {}); */
+	});
+	
+	$('section:eq(0) .cta--confirm').click(function(){
+		if(validateForm(1) == 0) {
+			$('[data-js="step-section"]').data('plugin_uiStep').next();
+			checkTestPurpose();
+		}
+	});
+	
+	$('.text_body_temp').on('keydown focusout', function(e) {
+    	if(!ComUtils.isEmpty(this.value)){
+    		$('#checkFeverUnknown').prop('checked', false);
+    	}
+	});
+	
+	$('[name=symptomsCd]').click(function(){
+		var $sym = $(this);
+		if($sym.val()=='999' && $sym.is(':checked')) {
+			$('[name=symptomsCd][value!=999]').prop('checked', false);
+		} else {
+			$('[name=symptomsCd][value=999]').prop('checked', false);
+		}
+		
+		if($('[name=symptomsCd]:checked').val() === undefined){
+			$('#symptomsDtDom')[0].hidden = true;
+			$('#symptomsDt')[0].placeholder = "YYYYMMDD";
+			$('#symptomsDt').val(TimeUtils.dateConverter(Date.now(), "YYYYMMDD"));
+			$('#symptomsDt')[0].disabled = false;
+		}else{
+			$('#symptomsDtDom')[0].hidden = false;
+			if($sym.val() ==='999'){
+				$('#symptomsDtDom')[0].hidden = true;
+				$('#symptomsDt')[0].disabled = true;
+				$('#symptomsDt').val(TimeUtils.dateConverter(Date.now(), "00000000"));
+			} else{
+				$('#symptomsDt')[0].placeholder = "YYYYMMDD";
+				$('#symptomsDt').val(TimeUtils.dateConverter(Date.now(), "YYYYMMDD"));
+				$('#symptomsDt')[0].disabled = false;
+			}
+		}
+	});
+	
+	$('section:eq(1) .cta--cancel').click(function(){
+		$('[data-js="step-section"]').data('plugin_uiStep').prev();
+	});
+	
+	$('section:eq(1) .cta--confirm').click(function(){
+		if(validateForm(2) == 0) {
+			var params = ComUtils.getParams('form');
+			params.personalId = params.personalId.replaceAll('-', '');
+			params.countryCd = params.foreignerYn=='N' ? 'KR' : params.countryCd;
+			params.countryNm = params.foreignerYn=='N' ? '대한민국' : $('#ul_country button[value="'+params.countryCd+'"]').data('regionName');
+			params.patntAge = ComUtils.getPatntAge(params.birthday);
+			params.patntRdnmadrDtl = params.roadAddrPart2 + ' ' + params.patntRdnmadrDtl;
+			
+			params.feverTemperature = (params.feverYn == 'Y' && !$('#checkFeverUnknown').is(':checked') ? ''+params.feverTemperature : '');
+			params.heatDuration = (params.feverYn == 'Y' ? ''+params.heatDuration : '');
+			params.outbreakArea = params.outbreakAreaVisitYn == 'Y' ? params.outbreakArea : '';
+			params.travelCountries = params.travelYn == 'Y' ? params.travelCountries : '';
+			params.travelEnterDt = params.travelYn == 'Y' ? params.travelEnterDt : '';
+			params.suspiciousContactNm = params.suspiciousContactYn == 'Y' ? params.suspiciousContactNm : '';
+			
+			params.registerId = ComUtils.getValue('registerId');
+			
+			params.personalCheck = (params.personalCheck == "on" ? 'Y' : 'N'); 
+			params.pregStCd = (params.pregStCd == "1"? 'Y':'N');
+			params.trgetSn = params.testPurpose == "79" ? params.trgetSn : null;
+			/* params.personalTypeBox = (params.testPurpose == '79' ? 0 : 0); */ 
+			
+			params.patntAreaCtprvnCd = params.patntEmdCd.substr(0,2); 
+			params.patntAreaSignguCd = params.patntEmdCd.substr(1,3);
+			
+			params.registTy = $('#registerId').val() == 'SYSTEM' ? 'm' : 'w';
+			params.registerId = $('#registerId').val() == 'SYSTEM' ? 'SYSTEM' : $('#registerId').val();  
+			
+			params.registSe = 'SC';
+
+			var smptm = '', smptmStr = '';
+			$('[name=symptomsCd]:checked').each(function(i, item) {
+				smptm += (i > 0 ? ',' : '') + item.value;
+				smptmStr += (i > 0 ? ',' : '') + item.dataset.val;
+			});
+			params.smptmAt = smptm == '999' ? 'N' : 'Y';
+			params.symptomsCd = smptm == '999' ? '' : smptm;
+			params.symptomsCdStr = smptm == '999' ? '' : smptmStr;
+
+			$('.c-modal__wrap').css('min-height', '340px');
+			ComUtils.confirm('제출 후 선택한 선별진료소를 방문 후,<br>신분증 제출시 전자문진표 제출하셨다고 말씀해 주십시오.<br><br>보다 신속한 검사를 받으실 수 있습니다.<br>제출 후 24시간안에 선별진료소를 방문하여 주십시오.', '제출하시겠습니까?', function(){
+				ComUtils.callAjax('/phc/save.do', params, function(resp){
+			   		if (resp.result == 'T') {
+			   			localStorage.removeItem('imsmm.selfcheckInfo');
+			   			localStorage.removeItem('imsmm.address');
+			   			/* localStorage.removeItem('imsmm.piTarget'); */
+			   			ComUtils.alert('제출되었습니다<br>반드시 24시간 안에 선별진료소를 방문해주세요', '알림', function(){ 
+			   				ComUtils.redirect('/phc/'+params.insttid);
+		   				});
+			   	 	} else if (resp.result == 'F') { 
+			   	 		if(!ComUtils.isEmpty(resp.data)){
+				   	 		$('#'+resp.data).closest('.t-form__row').find('.sec-header').addClass('is-error');
+					   	 	$('#modal_alert').data('plugin_modal').onAfterClose = function() {
+					 		   FES.MD.DELAY_FUNC(function() {
+					 		      $(window).scrollTop($('.is-error:eq(0)').offset().top);
+					 		      $('#modal_alert').data('plugin_modal').onAfterClose = function(){};
+					 		   }, 100);
+					 		};
+					 		var msg = $('.is-error:eq(0)').find('h2').text()+'을(를) 확인하세요.';
+					 		$('.c-modal__wrap').css('min-height', '');
+					 		ComUtils.alert(msg, '알림');
+			   	 		} else {
+				   	 		ComUtils.alert('죄송합니다. 저장 실패하였습니다.<br>잠시 후 다시 시도해 주십시오.<br>같은 증상이 계속되는 경우 선별진료소로 연락 바랍니다.', '알림');
+			   	 		}
+			   	 	} else {
+			   	 		ComUtils.alert('죄송합니다. 저장 실패하였습니다.<br>잠시 후 다시 시도해 주십시오.<br>같은 증상이 계속되는 경우 선별진료소로 연락 바랍니다.', '알림');
+			   	 	}
+				});	
+			});
+		}
+	});
+	
+	
+	
+	var selfcheckInfo = JSON.parse(localStorage.getItem('imsmm.selfcheckInfo'));
+	var selectedPersonalType = null;
+	/* if (selfcheckInfo != null) {
+		ComUtils.setDataMapping('form', selfcheckInfo);
+		selectedPersonalType = selfcheckInfo.personalTypeBox;
+		if (selfcheckInfo.foreignerYn === 'Y') {
+			var $styleCombobox = $('[data-js="toggle-select"]');
+			$('[data-target="rdo-panel__out"]').click();
+			$('[data-id="rdo-panel__out"]').addClass('is-active');
+			$styleCombobox.data('plugin_styleCombobox').update();
+		}
+		
+		if(selfcheckInfo.testPurpose == "79"){
+			$('#testPurpose_10').click();
+		}
+		
+		if(selfcheckInfo.personalCheck == "on"){
+			$('#personalId').prop('disabled', true);
+			$('#personalId').prop('hidden', true);
+		}else{
+			$('#personalId').prop('disabled', false);
+			$('#personalId').prop('hidden', false);
+		}
+	} */
+	
+	var address = JSON.parse(localStorage.getItem('imsmm.address'));
+	if (address != null) {
+		fnRetNewPostSetN_jusoro(address);
+		showJusoPopup(0);
+	}
+	
+	piTargetTy();
+	
+	/* var piTarget = JSON.parse(localStorage.getItem('imsmm.piTarget'));
+	if(piTarget == null){
+		var params = {};
+		ComUtils.callAjax('/getInsTypeList.do', params, function(resp){
+			if(resp.result == 'T'){
+				piTarget = resp.data;
+				localStorage.setItem('imsmm.piTarget', JSON.stringify(resp.data));
+				setPersonalTypeBox(piTarget, selectedPersonalType);
+			}
+		});
+	}else
+	{
+		setPersonalTypeBox(piTarget, selectedPersonalType);	
+	} */
+	
+	if($('[name=symptomsCd]').val() == "999"){
+		ComUtils.setValue('symptomsDt', "00000000");
+	}
+	
+	
+});
+
+function showPPLayer(isShow){
+	if(isShow)
+		$("#ppLayerPop").show();
+	else
+		$("#ppLayerPop").hide();
+		
+}
+
+function showJusoPopup(isShow){
+	if(isShow){
+		$("#jusoModalPop").show();
+		$('body').addClass('modal-open');
+	}else{
+		$("#jusoModalPop").hide();
+		$('body').removeClass('modal-open');
+		
+		var address = JSON.parse(localStorage.getItem('imsmm.address'));
+		if (address != null) {
+			fnRetNewPostSetN_jusoro(address);
+		}
+	}	
+}
+
+
+function checkTestPurpose(){
+	var purpose = ComUtils.getValue('testPurpose');
+	if(purpose == "10"){
+		initializeSubItem();
+		$('#travelYn_Y').click();
+		$('[name=travelYn]').prop("disabled", true);
+	}else if(purpose == "50"){
+		initializeSubItem();
+		$('#outbreakAreaVisitYn_Y').click();
+		$('[name=outbreakAreaVisitYn]').prop("disabled", true);
+	}else if(purpose == "60" || purpose=="20"){
+		initializeSubItem();
+		$('#suspiciousContactYn_Y').click();
+		$('[name=suspiciousContactYn]').prop("disabled", true);
+	}else{
+		initializeSubItem();
+	}
+}
+
+
+function initializeSubItem(){
+	$('#travelYn_N').click();
+	$('#suspiciousContactYn_N').click();
+	$('#outbreakAreaVisitYn_N').click();	
+	
+	$('[name=travelYn]').prop("disabled", false);
+	$('[name=outbreakAreaVisitYn]').prop("disabled", false);
+	$('[name=suspiciousContactYn]').prop("disabled", false);
+}
+
+function fnRetNewPostSetN_jusoro(data) {
+	$('#patntRnZip').val(data.zipNo);
+	$('#patntRdnmadr').val(data.roadAddrPart1);
+	$('#patntRdnmadrDtl').val('').focus();
+	$('#patntEmdCd').val(data.admCd);
+	$('#patntBuldManageno').val(data.bdMgtSn);
+	$('#roadAddrPart2').val(data.roadAddrPart2);
+}
+
+
+function piTargetTy(){
+	var params = {
+			
+	}
+	
+	ComUtils.callAjax('/getInsTypeList.do', params, function(resp){
+		if(resp.result == 'T'){
+			
+			for(var i = 0; i < resp.data.length; i++){
+				var data = resp.data[i];
+				var op = $("<option value='" + data["trgetSn"] + "'>" + data["trgetTyNm"] + "</option>");  
+				$("#trgetSn").append(op);
+			}
+		}
+	});
+}
+
+
+function validateForm(step) {
+	$('.is-error').removeClass('is-error');
+	var format_yyyymmdd = /^(19[0-9][0-9]|20\d{2})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;	
+	var format_symptomsdt = /^([0-2][0-9][0-9][0-9])(0[0-9]|1[0-2])(0[0-9]|[1-2][0-9]|3[0-1])$/;
+	var birthDay = ComUtils.getValue('birthday');
+	var personalId = ComUtils.getValue('personalId');
+	var symptomsDt = ComUtils.getValue('symptomsDt');
+	
+	
+	if(step == 1) {
+		$('section:eq(0) [data-checkRequired]').each(function(i, item) {
+			
+			if (ComUtils.isEmpty(ComUtils.getValue(item))) {
+				if(item.id === "personalId"){
+					if($('#presonalCheck') == false){
+						$(item).closest('.t-form__row').find('.sec-header').addClass('is-error');
+					}
+				}else{
+					$(item).closest('.t-form__row').find('.sec-header').addClass('is-error');
+				}
+			}
+		});
+		
+		if(ComUtils.getValue('personalCheck') == ''){
+			if($('#personalId').val().substring(7,8) % 2 != ComUtils.getValue('sexdstnCd') % 2){
+				$('[name="sexdstnCd"]').closest('.t-form__row').find('.sec-header').addClass('is-error');
+			}
+
+			if(ComUtils.getValue('foreignerYn') == 'Y') {
+				if($('#personalId').val().substring(7,8) < 5){
+				$('#personalId').closest('.t-form__row').find('.sec-header').addClass('is-error');
+			}
+			}else if(ComUtils.getValue('foreignerYn') == 'N'){
+				if($('#personalId').val().substring(7,8) > 4){
+				$('#personalId').closest('.t-form__row').find('.sec-header').addClass('is-error');
+			}
+		}
+		}
+		
+		
+		if(personalId.substring(7, 8) == "3" || personalId.substring(7, 8) == "4" ){
+			personalId = "20" + personalId.substring(0, 6);
+		} else {
+			personalId = "19" + personalId.substring(0, 6);
+		}
+		
+		
+		if($('#personalCheck')[0].checked == false && (TimeUtils.dateConverter(personalId) < TimeUtils.dateConverter("20201000"))){
+			if(ComUtils.getValue('foreignerYn') == 'N') {
+				
+				if(!ComUtils.isPersonalNumber(ComUtils.getValue('personalId').replaceAll('-', ''))) {
+					$('#personalId').closest('.t-form__row').find('.sec-header').addClass('is-error');
+				}
+			} else {
+				
+				if(ComUtils.getValue('personalId').replaceAll('-', '').length != 13) {
+					$('#personalId').closest('.t-form__row').find('.sec-header').addClass('is-error');
+				}
+				if(ComUtils.getValue('countryCd').length == 0) {
+					$('#countryCd').closest('.t-form__row').find('.sec-header').addClass('is-error');
+				}
+			}
+		}else if((TimeUtils.dateConverter(personalId) > TimeUtils.dateConverter(Date.now()))){
+			$('#personalId').closest('.t-form__row').find('.sec-header').addClass('is-error');
+		}else if($('#personalCheck')[0].checked == true && ComUtils.getValue('foreignerYn') == 'Y'){
+			if(ComUtils.getValue('countryCd').length == 0) {
+				$('#countryCd').closest('.t-form__row').find('.sec-header').addClass('is-error');
+			}
+		}
+		
+		
+		
+		if(!format_yyyymmdd.test($('#birthday').val()) || (TimeUtils.dateConverter($('#birthday').val()) > TimeUtils.dateConverter(Date.now()))){
+			 $('#birthday').closest('.t-form__row').find('.sec-header').addClass('is-error');
+		}
+		
+		if(ComUtils.getValue('mobile').replace(/-/gi, '').length < 10 
+				|| '010 011 016 017 019'.indexOf(ComUtils.getValue('mobile').substring(0, 3)) == -1) {
+			$('#mobile').closest('.t-form__row').find('.sec-header').addClass('is-error');
+		}
+		
+		if(ComUtils.getValue('patntRnZip').length > 0 && ComUtils.getValue('patntRdnmadrDtl').length == 0) {
+			$('#patntRdnmadrDtl').closest('.t-form__row').find('.sec-header').addClass('is-error');
+		}
+		
+		if(ComUtils.getValue('patntOccpCd') != 'B' && ComUtils.getValue('patntOccpCd') != 'D'
+				&& ComUtils.getValue('occpDtlInfo') == '') {
+			$('#occpDtlInfo').closest('.t-form__row').find('.sec-header').addClass('is-error');
+		}
+		
+		if(ComUtils.getValue('testPurpose') == '79' && (ComUtils.isEmpty(ComUtils.getValue('trgetSn')) || ComUtils.getValue('trgetSn') == null)){
+			$('#trgetSn').closest('.t-form__row').find('.sec-header').addClass('is-error');
+		}
+	} else {
+		
+		if(ComUtils.getValue('feverYn') == 'Y' 
+				&& !((ComUtils.getValue('feverTemperature') >= 35 && ComUtils.getValue('feverTemperature') <= 43) 
+						|| $('#checkFeverUnknown').is(':checked'))) {
+			$('#feverTemperature').closest('.t-form__row').find('.sec-header').addClass('is-error');
+		}
+		
+		if($('[name=symptomsCd]:checked').length == 0) {
+			$('[name=symptomsCd]').closest('.t-form__row').find('.sec-header').addClass('is-error');
+		}
+		
+		
+		if(!format_symptomsdt.test(symptomsDt) || symptomsDt.length != 8){
+			$('#symptomsDt').closest('.t-form__row').find('.sec-header').addClass('is-error');
+		}
+
+		if(TimeUtils.dateConverter(ComUtils.getValue('symptomsDt'), 'YYYY-MM-DD') > TimeUtils.dateConverter(Date.now(), 'YYYY-MM-DD')){
+			$('#symptomsDt').closest('.t-form__row').find('.sec-header').addClass('is-error');
+		}
+		
+		
+		if(ComUtils.getValue('suspiciousContactYn') == 'Y' && ComUtils.getValue('suspiciousContactNm').length == 0) {
+			$('#suspiciousContactNm').closest('.t-form__row').find('.sec-header').addClass('is-error');
+		}
+		
+		if(ComUtils.getValue('outbreakAreaVisitYn') == 'Y' && ComUtils.getValue('outbreakArea').length == 0) {
+			$('#outbreakArea').closest('.t-form__row').find('.sec-header').addClass('is-error');
+		}
+		
+		if(ComUtils.getValue('travelYn') == 'Y' && ComUtils.getValue('travelCountries').length == 0) {
+			$('#travelCountries').closest('.t-form__row').find('.sec-header').addClass('is-error');
+		}
+		
+		if(ComUtils.getValue('travelYn') == 'Y' 
+				&& (ComUtils.getValue('travelEnterDt').length == 0 || !format_yyyymmdd.test(ComUtils.getValue('travelEnterDt')))) {
+			$('#travelEnterDt').closest('.t-form__row').find('.sec-header').addClass('is-error');
+		}
+		
+		
+		if (ComUtils.isEmpty(ComUtils.getValue('chk_agree'))) {
+			$('#chk_agree').closest('.t-form__row').find('.sec-header').addClass('is-error');
+		}
+	}
+	
+	if($('.is-error:eq(0)').length > 0) {
+		var $errorItem = $('.is-error:eq(0)').parent().find('input:first');
+		if($errorItem.attr('id') === 'occpDtlInfo' && ComUtils.getValue('patntOccpCd').length == 0) {
+			$errorItem = $('#patntOccpCd');	
+		} else if($errorItem.attr('id') === 'patntRnZip' && ComUtils.getValue('patntRnZip').length > 0 && ComUtils.getValue('patntRdnmadrDtl').length == 0) {
+			$errorItem = $('#patntRdnmadrDtl'); 
+		}
+		var msg = !ComUtils.isEmpty($errorItem.attr('placeholder')) && $errorItem.attr('placeholder') != 'YYYYMMDD' ? $errorItem.attr('placeholder')
+				: $('.is-error:eq(0)').find('h2').text()+'을(를) 확인하세요.';
+		if($errorItem.attr('id') === 'feverTemperature'){
+			msg = '발열온도를 35.0 ~ 43.0 까지 입력 해주세요.';
+		} else if($errorItem.attr('name') === 'sexdstnCd'){
+			msg = '성별을 확인하세요 ';
+		}
+		
+		$('#modal_alert').data('plugin_modal').onAfterClose = function() {
+		   FES.MD.DELAY_FUNC(function() {
+		      $(window).scrollTop($('.is-error:eq(0)').offset().top);
+		      $('#modal_alert').data('plugin_modal').onAfterClose = function(){};
+		   }, 100);
+		};
+		
+		ComUtils.alert(msg, '알림', function(){
+			$errorItem.focus();
+		});
+	}
+	
+	
+	return $('.is-error').length;
+}
+</script>
+	    
+
+
+
+
+
+
+
+
+
+
+
+<section id="modal_alert" class="c-modal c-modal--alert c-modal--sizeM has-button" role="dialog" aria-labelledby="modal_alert__title">
+    <div class="c-modal__wrap" role="document" tabindex="-1">
+        <header class="c-modal__head">
+            <h2 class="c-modal__title" id="modal_alert__title"></h2>
+        </header>
+        <div class="c-modal__body">
+            <div class="c-modal__scroll">
+                <div class="c-modal__content">
+                    <p class="alert-msg"></p>
+                </div>
+            </div>
+        </div>
+        <div class="c-modal__foot o-cta-wrap">
+            <button type="button" data-dismiss="confirm" class="cta cta--modal c-modal__button cta--confirm"> 확인 </button>
+        </div>
+        <button type="button" class="c-modal__close" data-dismiss="cancel"><span class="screen--out">close</span></button>
+    </div>
+</section>
+
+
+<section id="modal_confirm" class="c-modal c-modal--alert c-modal--sizeM has-button" role="dialog" aria-labelledby="modal_alert__title">
+    <div class="c-modal__wrap" role="document" tabindex="-1">
+        <header class="c-modal__head">
+            <h2 class="c-modal__title" id="modal_confirm__title"></h2>
+        </header>
+        <div class="c-modal__body">
+            <div class="c-modal__scroll">
+                <div class="c-modal__content">
+                    <p class="alert-msg"></p>
+                </div>
+            </div>
+        </div>
+        <div class="c-modal__foot o-cta-wrap">
+            <button type="button" data-dismiss="confirm" class="cta cta--modal c-modal__button cta--confirm"> 확인 </button>
+            <button type="button" data-dismiss="cancel" class="cta cta--modal c-modal__button cta--cancel"> 취소 </button>
+        </div>
+        <button type="button" class="c-modal__close" data-dismiss="cancel"><span class="screen--out">close</span></button>
+    </div>
+</section>
+
+
+	</body>
+</html>
